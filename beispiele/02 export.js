@@ -8,13 +8,13 @@ async function run() {
 
   const page = await browser.newPage();
 
-  await page.goto("https://github.com");
+  await page.goto("https://precelerator.de");
 
   // Screenshot der Seite machen und speichern
-  await page.screenshot({ path: "github.png" });
+  await page.screenshot({ path: "precelerator.png" });
 
   // Seite als PDF speichern - funktioniert nur wenn headless in Z. 5 auf true ist!
-  await page.pdf({ path: "github.pdf", format: "a4" });
+  await page.pdf({ path: "precelerator.pdf", format: "a4" });
 
   browser.close();
 }
