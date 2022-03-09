@@ -15,13 +15,13 @@ async function run() {
   // -> ist der nicht da ist die Seite noch nicht geladen
   await page.waitForSelector(".event-page");
 
-  //   let events = await page.evaluate(() => {
-  //     return document.querySelectorAll(".card-title").innerText;
-  //   });
+  // Mit $$eval können wir per Selektor auf ein Element zugreifen
   let events = await page.$$eval(".card-title", (events) => {
+    // mit .innerText greifen wir auf den Text innerhalb des Elements zu
     return events.map((e) => e.innerText);
   });
 
+  // das Ergebnis landet in der Konsole/ im Terminal, in dem du das Skript ausführst
   console.log(events);
 
   browser.close();

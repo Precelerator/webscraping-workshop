@@ -1,4 +1,5 @@
 const puppeteer = require("puppeteer");
+// diesmal nutzen wir zusätzlich das Package csv-writer zum Schreiben der Ergebnisse in eine Datei
 const createCsvWriter = require("csv-writer").createObjectCsvWriter;
 
 async function run() {
@@ -16,6 +17,7 @@ async function run() {
   let event_data = await page.$$eval(".card", (events) => {
     events = events.map((e) => {
       return {
+        // mehr Beispiele für spezielle Selektoren
         name: e.querySelector(".card-title").innerText,
         datum: e.querySelector(".card .content h6").innerText,
         beschreibung: e.querySelector(".card .card-text").innerText,
@@ -28,6 +30,7 @@ async function run() {
 
   //console.log(event_data);
 
+  // diesmal schreiben wir die Ergebnisse direkt in eine .csv Datei
   const csvWriter = createCsvWriter({
     path: "events.csv",
     header: [
